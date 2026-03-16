@@ -54,21 +54,17 @@ h1, h2, h3, h4 {
 
 /* ─── NAV ─── */
 .nav {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: static;
   width: 100%;
-  z-index: 100;
-  padding: 1.25rem 2rem;
-  background: rgba(19, 35, 71, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding: 2.5rem 2rem 1.5rem;
+  background: var(--navy);
+  text-align: center;
 }
 
 .nav__logo {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
-  font-size: 1.35rem;
+  font-size: 2.25rem;
   color: var(--white);
   letter-spacing: -0.02em;
 }
@@ -86,7 +82,7 @@ h1, h2, h3, h4 {
   justify-content: center;
   background: var(--navy);
   overflow: hidden;
-  padding: 6rem 2rem 4rem;
+  padding: 4rem 2rem 4rem;
 }
 
 .hero__mesh {
@@ -165,14 +161,37 @@ h1, h2, h3, h4 {
 
 /* ─── PROBLEM ─── */
 .problem {
-  background: var(--slate-050);
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
   padding: 6rem 2rem;
 }
 
+.problem__video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  z-index: 0;
+}
+
+.problem__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
 .problem__inner {
+  position: relative;
+  z-index: 2;
   max-width: 1080px;
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .section-title {
@@ -188,33 +207,15 @@ h1, h2, h3, h4 {
   color: var(--white);
 }
 
-.problem__columns {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  align-items: center;
-  text-align: left;
-}
-
-@media (min-width: 700px) {
-  .problem__columns {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 3rem;
-  }
-}
-
-.problem__video video {
-  width: 100%;
-  max-width: 280px;
-  max-height: 480px;
+.problem__card {
+  background: rgba(19, 35, 71, 0.75);
+  padding: 2rem;
   border-radius: 12px;
-  object-fit: cover;
-  display: block;
+  max-width: 480px;
+  width: 100%;
 }
 
 .problem__bullets {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -249,13 +250,12 @@ h1, h2, h3, h4 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   font-size: 1.05rem;
-  color: var(--navy);
+  color: var(--white);
 }
 
 .bullet-row__desc {
   font-size: 0.92rem;
-  color: var(--navy);
-  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.5;
 }
 
@@ -273,9 +273,36 @@ h1, h2, h3, h4 {
 
 .problem__stat-desc {
   font-size: 0.92rem;
-  color: var(--navy);
-  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.7);
 }
+
+@media (max-width: 700px) {
+  .problem__inner {
+    align-items: center;
+  }
+  .problem__card {
+    max-width: 100%;
+  }
+}
+
+/* ─── WORD FADE ANIMATION ─── */
+@keyframes wordFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.word-fade .word {
+  display: inline-block;
+  opacity: 0;
+}
+
+.word-fade.animate .word {
+  animation: wordFadeIn 0.5s ease forwards;
+}
+
+.word-fade.animate .word:nth-child(1) { animation-delay: 0s; }
+.word-fade.animate .word:nth-child(2) { animation-delay: 0.3s; }
+.word-fade.animate .word:nth-child(3) { animation-delay: 0.6s; }
 
 /* ─── COUNTERS ─── */
 .counters {
@@ -301,31 +328,40 @@ h1, h2, h3, h4 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  justify-items: center;
 }
 
 @media (min-width: 700px) {
   .counters__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 700px;
+    margin: 0 auto;
   }
 }
 
 .counter-item__value {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   color: var(--teal);
   margin-bottom: 0.5rem;
 }
 
 .counter-item__label {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.7);
+}
+
+/* ─── DIVIDER ─── */
+.divider {
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--mint));
 }
 
 /* ─── SOLUTION ─── */
 .solution {
   background: var(--navy);
-  padding: 6rem 2rem;
+  padding: 7rem 2rem 6rem;
 }
 
 .solution__inner {
@@ -491,9 +527,13 @@ h1, h2, h3, h4 {
 /* ─── UTILITIES ─── */
 @media (max-width: 600px) {
   .hero {
-    padding: 5rem 1.25rem 3rem;
+    padding: 3rem 1.25rem 3rem;
   }
-  .problem, .solution, .contact {
+  .problem {
+    padding: 4rem 1.25rem;
+    min-height: 400px;
+  }
+  .solution, .contact {
     padding: 4rem 1.25rem;
   }
 }
@@ -518,12 +558,11 @@ h1, h2, h3, h4 {
 
 <!-- PROBLEM -->
 <section class="problem" id="problem">
+  <video class="problem__video-bg" src="sarah.mp4" autoplay muted playsinline></video>
+  <div class="problem__overlay"></div>
   <div class="problem__inner">
-    <h2 class="section-title section-title--dark fade-in">Sound Familiar, Dr. Mitchell?</h2>
-    <div class="problem__columns fade-in">
-      <div class="problem__video">
-        <video src="sarah.mp4" autoplay muted loop playsinline></video>
-      </div>
+    <div class="problem__card fade-in">
+      <h2 class="section-title section-title--light" style="margin-bottom:1.5rem;text-align:left;">Sound Familiar, Dr. Mitchell?</h2>
       <div class="problem__bullets">
         <div class="bullet-row">
           <div class="bullet-row__icon">✕</div>
@@ -558,15 +597,11 @@ h1, h2, h3, h4 {
 <!-- COUNTERS -->
 <section class="counters" id="counters">
   <div class="counters__inner">
-    <h2 class="counters__title fade-in">Every. Single. Day.</h2>
+    <h2 class="counters__title word-fade"><span class="word">Every.</span> <span class="word">Single.</span> <span class="word">Day.</span></h2>
     <div class="counters__grid fade-in">
       <div class="counter-item">
-        <div class="counter-item__value" data-target="150" data-prefix="$" data-decimals="0">$0</div>
-        <div class="counter-item__label">Lost per day</div>
-      </div>
-      <div class="counter-item">
-        <div class="counter-item__value" data-target="2.1" data-suffix=" wRVUs" data-decimals="1">0.0 wRVUs</div>
-        <div class="counter-item__label">Uncredited per day</div>
+        <div class="counter-item__value" data-target="420" data-suffix=" wRVUs" data-decimals="0">0 wRVUs</div>
+        <div class="counter-item__label">Uncredited per year</div>
       </div>
       <div class="counter-item">
         <div class="counter-item__value" data-target="36000" data-prefix="$" data-decimals="0">$0</div>
@@ -575,6 +610,9 @@ h1, h2, h3, h4 {
     </div>
   </div>
 </section>
+
+<!-- DIVIDER -->
+<div class="divider"></div>
 
 <!-- SOLUTION -->
 <section class="solution" id="solution">
@@ -672,6 +710,18 @@ const counterObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.counters__grid').forEach(el => counterObserver.observe(el));
+
+// Word-by-word fade animation
+const wordFadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate');
+      wordFadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.word-fade').forEach(el => wordFadeObserver.observe(el));
 
 // Form submission
 document.getElementById('contactForm').addEventListener('submit', function(e) {
