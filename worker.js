@@ -7,8 +7,8 @@ async function handleRequest(request) {
     return new Response(null, {
       headers: {
         'Access-Control-Allow-Origin': 'https://consivomed.com',
-        'Access-Control-Allow-Methods': 'POST',
-        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       }
     })
   }
