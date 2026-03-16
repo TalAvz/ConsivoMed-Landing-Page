@@ -521,7 +521,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   const errorEl = document.getElementById('formError');
   errorEl.style.display = 'none';
 
-  fetch('YOUR_WORKER_URL', {
+  fetch('https://consivomed-mailer.talavz.workers.dev', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
