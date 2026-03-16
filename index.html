@@ -373,6 +373,18 @@ h1, h2, h3, h4 {
   font-size: 0.95rem;
 }
 
+.form__error {
+  display: none;
+  padding: 1rem;
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  color: #991b1b;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
 /* ─── FOOTER ─── */
 .footer {
   background: var(--navy);
@@ -465,12 +477,13 @@ h1, h2, h3, h4 {
   <div class="contact__inner">
     <h2 class="section-title section-title--dark fade-in">Join the Pilot</h2>
     <p class="contact__body fade-in">We're recruiting senior specialists at academic medical centers for our design partner cohort.</p>
-    <form class="form fade-in" id="contactForm" action="https://formspree.io/f/REPLACE_WITH_ID" method="POST">
+    <form class="form fade-in" id="contactForm">
       <input class="form__input" type="text" name="name" placeholder="Name" required>
       <input class="form__input" type="email" name="email" placeholder="Email" required>
       <input class="form__input" type="text" name="specialty" placeholder="Specialty">
       <input class="form__input" type="text" name="institution" placeholder="Institution">
       <button type="submit" class="btn btn--mint form__submit">Request Early Access</button>
+      <div class="form__error" id="formError">Something went wrong. Please try again.</div>
     </form>
     <div class="form__thanks" id="formThanks">
       <h3>Thank you!</h3>
@@ -501,20 +514,34 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const form = this;
-  const data = new FormData(form);
+  const name = form.querySelector('[name="name"]').value;
+  const email = form.querySelector('[name="email"]').value;
+  const specialty = form.querySelector('[name="specialty"]').value;
+  const institution = form.querySelector('[name="institution"]').value;
+  const errorEl = document.getElementById('formError');
+  errorEl.style.display = 'none';
 
-  fetch(form.action, {
+  fetch('https://api.resend.com/emails', {
     method: 'POST',
-    body: data,
-    headers: { 'Accept': 'application/json' }
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer RESEND_API_KEY'
+    },
+    body: JSON.stringify({
+      from: 'ConsivoMed Landing <onboarding@resend.dev>',
+      to: 'tal@consivomed.com',
+      subject: 'New Pilot Request — ConsivoMed',
+      html: `<p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Specialty:</b> ${specialty}</p><p><b>Institution:</b> ${institution}</p>`
+    })
   }).then(response => {
     if (response.ok) {
       form.style.display = 'none';
       document.getElementById('formThanks').style.display = 'block';
+    } else {
+      errorEl.style.display = 'block';
     }
   }).catch(() => {
-    form.style.display = 'none';
-    document.getElementById('formThanks').style.display = 'block';
+    errorEl.style.display = 'block';
   });
 });
 </script>
