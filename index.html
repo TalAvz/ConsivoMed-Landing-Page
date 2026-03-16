@@ -188,44 +188,138 @@ h1, h2, h3, h4 {
   color: var(--white);
 }
 
-.stats {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+.problem__columns {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+  text-align: left;
 }
 
 @media (min-width: 700px) {
-  .stats {
+  .problem__columns {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+}
+
+.problem__video video {
+  width: 100%;
+  max-width: 280px;
+  max-height: 480px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+
+.problem__bullets {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bullet-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.bullet-row__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+.bullet-row__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.bullet-row__label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+
+.bullet-row__desc {
+  font-size: 0.92rem;
+  color: var(--navy);
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+.problem__stat {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.problem__stat-number {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--mint);
+}
+
+.problem__stat-desc {
+  font-size: 0.92rem;
+  color: var(--navy);
+  opacity: 0.7;
+}
+
+/* ─── COUNTERS ─── */
+.counters {
+  background: var(--navy);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.counters__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.counters__title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  color: var(--white);
+  margin-bottom: 2.5rem;
+}
+
+.counters__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 700px) {
+  .counters__grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.stat-card {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 2px 16px rgba(19, 35, 71, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(19, 35, 71, 0.1);
-}
-
-.stat-card__number {
+.counter-item__value {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   font-size: clamp(2rem, 4vw, 2.75rem);
   color: var(--teal);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
-.stat-card__desc {
+.counter-item__label {
   font-size: 0.95rem;
-  color: var(--navy);
-  line-height: 1.6;
-  opacity: 0.8;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* ─── SOLUTION ─── */
@@ -425,19 +519,58 @@ h1, h2, h3, h4 {
 <!-- PROBLEM -->
 <section class="problem" id="problem">
   <div class="problem__inner">
-    <h2 class="section-title section-title--dark fade-in">Sound Familiar, Dr. Sarah?</h2>
-    <div class="stats">
-      <div class="stat-card fade-in">
-        <div class="stat-card__number">6:47 PM</div>
-        <p class="stat-card__desc">Three curbside calls today. 8 minutes. 12 minutes. 6 minutes. All informal. All undocumented.</p>
+    <h2 class="section-title section-title--dark fade-in">Sound Familiar, Dr. Mitchell?</h2>
+    <div class="problem__columns fade-in">
+      <div class="problem__video">
+        <video src="sarah.mp4" autoplay muted loop playsinline></video>
       </div>
-      <div class="stat-card fade-in">
-        <div class="stat-card__number">$36,000</div>
-        <p class="stat-card__desc">Lost every year per specialist to unbilled consults. Zero wRVUs credited. Zero legal protection.</p>
+      <div class="problem__bullets">
+        <div class="bullet-row">
+          <div class="bullet-row__icon">✕</div>
+          <div class="bullet-row__text">
+            <span class="bullet-row__label">No Revenue</span>
+            <span class="bullet-row__desc">This call will never appear on a claim</span>
+          </div>
+        </div>
+        <div class="bullet-row">
+          <div class="bullet-row__icon">✕</div>
+          <div class="bullet-row__text">
+            <span class="bullet-row__label">No wRVUs</span>
+            <span class="bullet-row__desc">Zero credit toward your productivity score</span>
+          </div>
+        </div>
+        <div class="bullet-row">
+          <div class="bullet-row__icon">✕</div>
+          <div class="bullet-row__text">
+            <span class="bullet-row__label">Full Legal Exposure</span>
+            <span class="bullet-row__desc">Your advice is in their EHR. You have no record.</span>
+          </div>
+        </div>
+        <div class="problem__stat">
+          <div class="problem__stat-number">$38</div>
+          <div class="problem__stat-desc">Lost on this single call. CPT 99447. Gone.</div>
+        </div>
       </div>
-      <div class="stat-card fade-in">
-        <div class="stat-card__number">100% Exposure</div>
-        <p class="stat-card__desc">Your advice is in their EHR. You have no record. If something goes wrong, you are undefended.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTERS -->
+<section class="counters" id="counters">
+  <div class="counters__inner">
+    <h2 class="counters__title fade-in">Every. Single. Day.</h2>
+    <div class="counters__grid fade-in">
+      <div class="counter-item">
+        <div class="counter-item__value" data-target="150" data-prefix="$" data-decimals="0">$0</div>
+        <div class="counter-item__label">Lost per day</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-item__value" data-target="2.1" data-suffix=" wRVUs" data-decimals="1">0.0 wRVUs</div>
+        <div class="counter-item__label">Uncredited per day</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-item__value" data-target="36000" data-prefix="$" data-decimals="0">$0</div>
+        <div class="counter-item__label">Lost per year</div>
       </div>
     </div>
   </div>
@@ -509,6 +642,36 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Counter animation
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const counters = entry.target.querySelectorAll('.counter-item__value');
+      counters.forEach(counter => {
+        const target = parseFloat(counter.dataset.target);
+        const prefix = counter.dataset.prefix || '';
+        const suffix = counter.dataset.suffix || '';
+        const decimals = parseInt(counter.dataset.decimals) || 0;
+        const duration = 2000;
+        const start = performance.now();
+
+        function update(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = eased * target;
+          counter.textContent = prefix + current.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + suffix;
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      });
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.counters__grid').forEach(el => counterObserver.observe(el));
 
 // Form submission
 document.getElementById('contactForm').addEventListener('submit', function(e) {
