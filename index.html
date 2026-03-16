@@ -521,7 +521,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   const errorEl = document.getElementById('formError');
   errorEl.style.display = 'none';
 
-  fetch('https://api.resend.com/emails', {
+  fetch('YOUR_WORKER_URL', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
