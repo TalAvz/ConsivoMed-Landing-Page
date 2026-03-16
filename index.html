@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ConsivoMed — Capture the Clinical Shadow Economy</title>
+<title>ConsivoMed - Capture the Clinical Shadow Economy</title>
 <meta name="description" content="ConsivoMed turns informal curbside consultations into documented, billable events. Capture lost revenue from the $2.1B clinical shadow economy.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -416,28 +416,28 @@ h1, h2, h3, h4 {
 <section class="hero">
   <div class="hero__mesh"></div>
   <div class="hero__content fade-in">
-    <h1 class="hero__headline">17% of Specialist Work Generates Zero Revenue.</h1>
-    <p class="hero__subhead">ConsivoMed captures the $2.1B clinical shadow economy — turning informal curbside consultations into documented, billable events.</p>
-    <a href="#contact" class="btn btn--mint">Request Early Access</a>
+    <h1 class="hero__headline">You Gave 15 Minutes of Expert Advice. You Got Nothing Back.</h1>
+    <p class="hero__subhead">No revenue. No wRVUs. No documentation. Just full legal exposure. ConsivoMed changes that automatically.</p>
+    <a href="#contact" class="btn btn--mint">Claim Your Spot in the Pilot</a>
   </div>
 </section>
 
 <!-- PROBLEM -->
 <section class="problem" id="problem">
   <div class="problem__inner">
-    <h2 class="section-title section-title--dark fade-in">The Clinical Shadow Economy</h2>
+    <h2 class="section-title section-title--dark fade-in">Sound Familiar, Dr. Sarah?</h2>
     <div class="stats">
       <div class="stat-card fade-in">
-        <div class="stat-card__number">$93,979</div>
-        <p class="stat-card__desc">Lost annually per academic department to unbilled curbside consults</p>
+        <div class="stat-card__number">6:47 PM</div>
+        <p class="stat-card__desc">Three curbside calls today. 8 minutes. 12 minutes. 6 minutes. All informal. All undocumented.</p>
       </div>
       <div class="stat-card fade-in">
-        <div class="stat-card__number">192M</div>
-        <p class="stat-card__desc">Informal physician consultations per year generating 0 wRVUs</p>
+        <div class="stat-card__number">$36,000</div>
+        <p class="stat-card__desc">Lost every year per specialist to unbilled consults. Zero wRVUs credited. Zero legal protection.</p>
       </div>
       <div class="stat-card fade-in">
-        <div class="stat-card__number">&lt;3%</div>
-        <p class="stat-card__desc">Of eligible clinicians currently bill interprofessional CPT codes</p>
+        <div class="stat-card__number">100% Exposure</div>
+        <p class="stat-card__desc">Your advice is in their EHR. You have no record. If something goes wrong, you are undefended.</p>
       </div>
     </div>
   </div>
@@ -446,7 +446,7 @@ h1, h2, h3, h4 {
 <!-- SOLUTION -->
 <section class="solution" id="solution">
   <div class="solution__inner">
-    <h2 class="section-title section-title--light fade-in">A Zero-Friction Clinical Bridge</h2>
+    <h2 class="section-title section-title--light fade-in">Same Call. This Time, It Counted.</h2>
     <div class="steps">
       <div class="step fade-in">
         <div class="step__number">1</div>
@@ -475,14 +475,14 @@ h1, h2, h3, h4 {
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact__inner">
-    <h2 class="section-title section-title--dark fade-in">Join the Pilot</h2>
-    <p class="contact__body fade-in">We're recruiting senior specialists at academic medical centers for our design partner cohort.</p>
+    <h2 class="section-title section-title--dark fade-in">Reserve Your Spot</h2>
+    <p class="contact__body fade-in">We are selecting a small cohort of senior specialists to shape the product. If you lose revenue to informal consults, we want to hear from you.</p>
     <form class="form fade-in" id="contactForm">
       <input class="form__input" type="text" name="name" placeholder="Name" required>
       <input class="form__input" type="email" name="email" placeholder="Email" required>
       <input class="form__input" type="text" name="specialty" placeholder="Specialty">
       <input class="form__input" type="text" name="institution" placeholder="Institution">
-      <button type="submit" class="btn btn--mint form__submit">Request Early Access</button>
+      <button type="submit" class="btn btn--mint form__submit">Request an Invitation</button>
       <div class="form__error" id="formError">Something went wrong. Please try again.</div>
     </form>
     <div class="form__thanks" id="formThanks">
@@ -530,7 +530,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     body: JSON.stringify({
       from: 'ConsivoMed Landing <onboarding@resend.dev>',
       to: 'tal@consivomed.com',
-      subject: 'New Pilot Request — ConsivoMed',
+      subject: 'New Pilot Request - ConsivoMed',
       html: `<p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Specialty:</b> ${specialty}</p><p><b>Institution:</b> ${institution}</p>`
     })
   }).then(response => {
