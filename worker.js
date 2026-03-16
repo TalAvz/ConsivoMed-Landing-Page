@@ -3,15 +3,10 @@ addEventListener('fetch', event => {
 })
 
 async function handleRequest(request) {
-  const origin = request.headers.get('Origin') || 'https://consivomed.com';
-
   if (request.method === 'OPTIONS') {
     return new Response(null, {
       headers: {
-        'Access-Control-Allow-Origin': origin,
-        'Access-Control-Allow-Methods': 'POST',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Origin': 'https://consivomed.com',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       }
@@ -36,7 +31,7 @@ async function handleRequest(request) {
       status: res.status,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': origin
+        'Access-Control-Allow-Origin': '*'
       }
     })
   } catch (err) {
@@ -44,7 +39,7 @@ async function handleRequest(request) {
       status: 500,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': origin
+        'Access-Control-Allow-Origin': '*'
       }
     })
   }
