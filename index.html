@@ -297,12 +297,12 @@ h1, h2, h3, h4 {
 }
 
 .word-fade.animate .word {
-  animation: wordFadeIn 0.5s ease forwards;
+  animation: wordFadeIn 1s ease forwards;
 }
 
 .word-fade.animate .word:nth-child(1) { animation-delay: 0s; }
-.word-fade.animate .word:nth-child(2) { animation-delay: 0.3s; }
-.word-fade.animate .word:nth-child(3) { animation-delay: 0.6s; }
+.word-fade.animate .word:nth-child(2) { animation-delay: 0.6s; }
+.word-fade.animate .word:nth-child(3) { animation-delay: 1.2s; }
 
 /* ─── COUNTERS ─── */
 .counters {
@@ -343,6 +343,16 @@ h1, h2, h3, h4 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--teal);
+  margin-bottom: 0.25rem;
+  min-width: 5ch;
+  display: inline-block;
+}
+
+.counter-item__unit {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   color: var(--teal);
   margin-bottom: 0.5rem;
 }
@@ -600,7 +610,8 @@ h1, h2, h3, h4 {
     <h2 class="counters__title word-fade"><span class="word">Every.</span> <span class="word">Single.</span> <span class="word">Day.</span></h2>
     <div class="counters__grid fade-in">
       <div class="counter-item">
-        <div class="counter-item__value" data-target="420" data-suffix=" wRVUs" data-decimals="0">0 wRVUs</div>
+        <div class="counter-item__value" data-target="420" data-decimals="0">0</div>
+        <div class="counter-item__unit">wRVUs</div>
         <div class="counter-item__label">Uncredited per year</div>
       </div>
       <div class="counter-item">
@@ -669,6 +680,12 @@ h1, h2, h3, h4 {
 </footer>
 
 <script>
+// Set video playback rate
+const videoElement = document.querySelector('.problem__video-bg');
+if (videoElement) {
+  videoElement.playbackRate = 0.3;
+}
+
 // Fade-in on scroll
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
